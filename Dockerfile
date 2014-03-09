@@ -7,8 +7,7 @@ RUN     git clone https://github.com/bitcoinerswithoutborders/config.git /docker
 
 RUN     cp /docker/www/hhvm.repo /etc/yum.repos.d/hhvm.repo
 RUN     cd /tmp
-RUN     wget http://dl.hhvm.com/conf/hhvm.gpg.key /tmp/
-RUN     rpm --import /tmp/hhvm.gpg.key
+RUN     rpm --import /docker/www/hhvm.gpg.key
 RUN     yum install hhvm -y
 
 RUN     cd /docker/www/
