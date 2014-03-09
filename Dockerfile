@@ -5,21 +5,21 @@ RUN     git config --global user.email "email@example.com"
 RUN     git config --global credential.helper cache
 RUN     git clone https://github.com/bitcoinerswithoutborders/config.git /docker/config
 
-RUN		cp /docker/www/hhvm.repo /etc/yum.repos.d/hhvm.repo
-RUN 	cd /tmp
-RUN 	wget http://dl.hhvm.com/conf/hhvm.gpg.key /tmp/
-RUN 	rpm --import /tmp/hhvm.gpg.key
-RUN 	yum install hhvm -y
+RUN     cp /docker/www/hhvm.repo /etc/yum.repos.d/hhvm.repo
+RUN   	cd /tmp
+RUN 	  wget http://dl.hhvm.com/conf/hhvm.gpg.key /tmp/
+RUN   	rpm --import /tmp/hhvm.gpg.key
+RUN 	  yum install hhvm -y
 
-RUN		cd /docker/www/
-RUN		wget https://wordpress.org/latest.tar.gz /docker/www/
+RUN		  cd /docker/www/
+RUN		  wget https://wordpress.org/latest.tar.gz /docker/www/
 RUN     tar -xzvf /docker/www/latest.tar.gz
-RUN		ls -l /docker/www
-RUN		mv /docker/www/wordpress/ /docker/www/bwb
+RUN		  ls -l /docker/www
+RUN		  mv /docker/www/wordpress/ /docker/www/bwb
 
 RUN     curl -sS https://getcomposer.org/installer > /docker/www/composer.php	
 RUN     mv /docker/www/composer.json /docker/www/bwb/
-RUN		hhvm /docker/www/composer.php install
+RUN		  hhvm /docker/www/composer.php install
 
-RUN		useradd bwb-hhvm
-RUN		useradd bwb-mysql
+RUN		  useradd bwb-hhvm
+RUN		  useradd bwb-mysql
