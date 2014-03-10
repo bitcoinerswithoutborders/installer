@@ -1,46 +1,46 @@
-#        -        ANNUIT COEPTIS  -  HUMANAE LIBERTAS         -        #
-#MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMM~ .MM+=MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMM. .M?..MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMM. .M=..MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMM      ...... .=MMMMMMMMMMMMMMMMMMMMMM+..MM. MMMMMMMMMMMMMMM#
-#MMMMMMMMMM.   ..,,..      .+MMMMMMMMMMMMMMMMMMMM= .MM  MMMMMMMMMMMMMMM#
-#MMMMMMMMM?.   :MMMM=   .MMMMMMMMMMMMMMMMMMM... .  .~M .MMMMMMMMMMMMMMM#
-#MMMMMMMMMM.   ~MMMM,   ,MMMMMMMMMMMMMMMMMMM.  .   ........+MMMMMMMMMMM#
-#MMMMMMMMMMM.  .,=,M.   =MMMMMMMMMMMMMMMMMMMMMM~  .,?+..   .=MMMMMMMMMM#
-#MMMMMMM+... ..... ..   ..,,=+MIMMMMMMMMMMMMMMM   .~MMMM..   +MMMMMMMMM#
-#MMMMMMM    .:MMMMMM.  ..    . ........=:+MMMM?   .+MMMM,. . +MMMMMMMMM#
-#MMMMMMM    ,MMMMMMM.  .M:   .~~     ..+ . ....   .:==~:  ..~MMMMMMMMMM#
-#MMMMMMM..  .MMMMMMM.  .M=   .IMM    MMMM,  ...   ...  .  .:MMMMMMMMMMM#
-#MMMMMMM=. . ...=+~+   .MM    7MM,   MMMM. .MI.   =MMI+:    .MMMMMMMMMM#
-#MMMMMMMMM?,... ...    ,MM..  ?MM=   MMM,. .M+.  .MMMMMM:.   :MMMMMMMMM#
-#MMMMMMMMMMMMM= ,,,. ..=MM,. .:MM.   =MM  .~M~.  .MMMMMM:.   :MMMMMMMMM#
-#MMMMMMMMMMMMM, +MM..MMMMM~. .~M..   ,MI  :MM:   ..,++:.    .+MMMMMMMMM#
-#MMMMMMMMMMMMM .MM=.~MMMMM=. .,M..   .M...MMM.  .... .  ....MMMMMMMMMMM#
-#MMMMMMMMMMMMMMMMMMMMMMMMMM. ..~.~.. ., .+MMMMM .IM: ,::=+MMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMMMMMMMMMMMM. .. .M+. .. =MMMMM+.,MM. MMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMMMMMMMMMMMM:   .MM~.   .MMMMMM+~~MM..MMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMMMMMMMMMMMM~   .MMM.   .MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMMMMMMMMMMMMM==:=MMM... +MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM#
-#           -          KEEP CALM  -  BITCOIN ON!           -           #
+#  ANNUIT COEPTIS HUMANAE LIBERTAS  #
+#BWWWWWWWWWB   BWWWB   BWWWWWWWWWWWB#   License: Copyleft
+#BWWWWWWWWWB   BWWWB   BWWWWWWWWWWWB#            All Rites Reversed - Ⓐ
+#BWWWWWWWWWB   BWWWB     BWWWWWWWWWB#
+#BWB                        BWWWWWWB#   Url: http://install.bwb.is/
+#BWB        BWWWWWWWWWB        BWWWB#   Contributors:
+#BWB        BWWWWWWWWWWB         BWB#     Jascha Ehrenreich
+#BWB        BWWWWWWWWWB          BWB#     jascha@jaeh.at
+#BWB                             BWB#   
+#BWB        BWWWWWWWWWB         BWWB#
+#BWB        BWWWWWWWWWWB        BWWB#
+#BWB        BWWWWWWWWWB        BWWWB#
+#BWB                          BWWWWB#
+#BWB                         BWWWWWB#
+#BWB                          BWWWWB#
+#BWB        BWWWB BWWWB        BWWWB#
+#BWB        BWWWB BWWWB         BWWB#
+#BWB        BWWWB BWWWB          BWB#
+#BWB        BWWWB BWWWB          BWB#
+#BWB        BWWWB BWWWB          BWB#
+#BWB        BWWWB BWWWB         BWWB#   This dockerfile will install
+#BWB         BWB   BWB          BWWB#   the bwb development env
+#BWB                         BWWWWWB#   into a docker-vm and start it
+#BWWWWWWWWWB  BWWWWB   BWWWWWWWWWWWB#
+#BWWWWWWWWWB  BWWWWB   BWWWWWWWWWWWB#
+#BWWWWWWWWWB  BWWWWB   BWWWWWWWWWWWB#   Not in use yet. very crude.
+#      KEEP CALM - BITCOIN ON      #
 
-# License: Copyleft - All Rites Reversed - BitcoinersWithoutBorders - Ⓐ
-#
-# Contributors: [
-#   {
-#		name: Jascha Ehrenreich, 
-#		email: jascha@jaeh.at, 
-#		url: http://jaeh.at, 
-#		github: https://github.com/jaeh
-#	}
-# ]
 
 ########################################################################
 #
 # This is the central dockerfile used to set up the environment
 # that we use to run all our wordpress installs in.
+# to build it first install http://docker.io and git.
+# then you can simply clone this repository:
+# git clone https://github.com/bitcoinerswithoutborders/installer
+# cd installer
+#
+# now that you are in the new directory just run:
+# docker build .
+#
+# the installer will then download the git repo with the config files
+# to the vm, install mariadb(mysql), hhvm, git and wget
 
 
 ########################################################################
@@ -49,15 +49,15 @@ FROM mattdm/fedora-small
 
 
 ########################################################################
-# install mysql, git, wget, curl, tar
-RUN yum install mariadb mariadb-server git wget curl tar -y
+# install mysql, git, wget
+RUN yum install mariadb mariadb-server git wget -y
 
 ########################################################################
 # Configure git to use the correct email and username for you
 
 RUN git config --global user.name "username" && \
-	git config --global user.email "email@example.com" && \
-	git config --global credential.helper cache
+    git config --global user.email "email@example.com" && \
+    git config --global credential.helper cache
 
 ########################################################################
 # Download the bwb config repo to the /docker/config dir
@@ -68,7 +68,7 @@ RUN mkdir /docker
 
 # clone the config repo into /docker/config
 RUN git clone https://github.com/bitcoinerswithoutborders/config.git \
-	/docker/config
+    /docker/config
 
 
 ########################################################################
@@ -82,7 +82,7 @@ RUN git clone https://github.com/bitcoinerswithoutborders/config.git \
 RUN chmod +x /docker/config/hhvm.sh
 
 # copy hhvm.sh onto the PATH and rename it to hhvmd
-RUN	cp /docker/config/hhvm.sh /usr/bin/hhvmd
+RUN cp /docker/config/hhvm.sh /usr/bin/hhvmd
 
 # copy the hhvm.repo file into yum.repos.d
 # this makes it accessible through the yum package manager 
@@ -106,19 +106,19 @@ RUN yum install hhvm -y
 RUN     mkdir /docker/www && cd /docker/www/
 
 # create the composer dir that will house the composer executable
-RUN	mkdir /docker/composer
+RUN mkdir /docker/composer
 
 # install the newest composer version into the path
 RUN curl -sS https://getcomposer.org/installer \
-	> /docker/composer/composer.php	
+    > /docker/composer/composer.php 
 
 # make composer executable
-RUN	chmod +x /usr/bin/composer
+RUN chmod +x /usr/bin/composer
 
 RUN     mkdir /docker/www/bwb
 RUN     mv /docker/config/composer.json /docker/www/bwb/
-RUN 	cd /docker/www/bwb
-RUN		chmod +x /docker/composer/composer.php
+RUN     cd /docker/www/bwb
+RUN     chmod +x /docker/composer/composer.php
 
 
 ########################################################################
@@ -128,10 +128,10 @@ RUN		chmod +x /docker/composer/composer.php
 RUN hhvm /docker/composer/composer.php install
 
 # copy composer.phar as composer onto the path
-RUN	cp //composer.phar /usr/bin/composer
+RUN cp //composer.phar /usr/bin/composer
 
 # copy the composer.phar somehwere the user can access it.
-RUN	mv //composer.phar /docker/composer/composer.phar
+RUN mv //composer.phar /docker/composer/composer.phar
 
 
 ########################################################################
