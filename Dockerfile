@@ -27,6 +27,7 @@
 #      KEEP CALM - BITCOIN ON      #
 
 
+
 ########################################################################
 #
 # This is the central dockerfile used to set up the environment
@@ -43,14 +44,24 @@
 # to the vm, install mariadb(mysql), hhvm, git and wget
 
 
+
 ########################################################################
+#
 # use the minimal fedora package from mattdm's repo as a starting point.
+
 FROM mattdm/fedora-small
 
 
+
 ########################################################################
+#
 # install mysql, git, wget
-RUN yum install mariadb mariadb-server git wget -y
+
+# individual steps for the packages to allow individual caching
+RUN yum install mariadb mariadb-server -y
+RUN yum install git -y
+RUN yum install wget -y
+RUN yum install makepasswd -y
 
 ########################################################################
 # Configure git to use the correct email and username for you
@@ -72,17 +83,13 @@ RUN git clone https://github.com/bitcoinerswithoutborders/config.git \
 
 
 ########################################################################
+#
 # Use the hhvm repo and gpg from the config github repo loaded above
 # and install hhvm using it.
 # After this hhvm is available as hhvm from the shell
 # to execute php files directly.
-# hhvmd (/usr/bin/hhvmd) starts, restarts and stops the hhvm daemon.
+# hhvmd (/usr/bin/hhvmd) starts, restarts and stops the hhvm as a daemon
 
-# make hhvm.sh executable
-RUN chmod +x /docker/config/hhvm.sh
-
-# copy hhvm.sh onto the PATH and rename it to hhvmd
-RUN cp /docker/config/hhvm.sh /usr/bin/hhvmd
 
 # copy the hhvm.repo file into yum.repos.d
 # this makes it accessible through the yum package manager 
@@ -92,18 +99,23 @@ RUN cp /docker/config/hhvm.repo /etc/yum.repos.d/hhvm.repo
 # key management for repos needs more work.
 RUN rpm --import /docker/config/hhvm.gpg.key
 
-
 # install hhvm using yum
 RUN yum install hhvm -y
+
+# make hhvm.sh executable
+RUN chmod +x /docker/config/hhvm.sh
+
+# copy hhvm.sh onto the PATH and rename it to hhvmd
+RUN ln -s /docker/config/hhvm.sh /bin/hhvmd
+
 
 
 ########################################################################
 #
-# Install composer
+# Install getcomposer.org
 
-
-# create the needed directory and change to it
-RUN     mkdir /docker/www && cd /docker/www/
+# create the data directory and change to it
+RUN mkdir /docker/www && cd /docker/www/
 
 # create the composer dir that will house the composer executable
 RUN mkdir /docker/composer
@@ -112,26 +124,28 @@ RUN mkdir /docker/composer
 RUN curl -sS https://getcomposer.org/installer \
     > /docker/composer/composer.php 
 
-# make composer executable
-RUN chmod +x /usr/bin/composer
+# create the actual webroot dir
+RUN mkdir /docker/www/bwb && cd /docker/www/bwb
 
-RUN     mkdir /docker/www/bwb
-RUN     mv /docker/config/composer.json /docker/www/bwb/
-RUN     cd /docker/www/bwb
-RUN     chmod +x /docker/composer/composer.php
+# copy the composer settings from the config dir
+RUN mv /docker/config/composer.json /docker/www/bwb/
+
+# make composer executable
+RUN chmod +x /docker/composer/composer.php
 
 
 ########################################################################
 #
 # run through the composer.phar install 
 
+# downloads the .phar file
 RUN hhvm /docker/composer/composer.php install
 
-# copy composer.phar as composer onto the path
-RUN cp //composer.phar /usr/bin/composer
-
-# copy the composer.phar somehwere the user can access it.
+# copy the composer.phar somehwere the user can access it for whatever.
 RUN mv //composer.phar /docker/composer/composer.phar
+
+# create composer symlink
+RUN ln -s /docker/composer/composer.phar /bin/composer
 
 
 ########################################################################
@@ -139,13 +153,16 @@ RUN mv //composer.phar /docker/composer/composer.phar
 # Add needed user for hhvm, mysql (later postfix, fpdf etc?)
 # Passwordgen needs to be done, names need to be randomized.
 
-RUN     useradd bwb-hhvm
-RUN     useradd bwb-mysql
+RUN useradd bwb-hhvm
+RUN useradd bwb-mysql
 
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # MISSING HERE:
 # USER PASSWD, MYSQL SETUP, ROOT RENAME, SSH PUB/PRIV KEY SETUP, ETC
+
+# starting with user password generation
+RUN echo `makepasswd -m 42`
 
 
 ########################################################################
@@ -153,13 +170,18 @@ RUN     useradd bwb-mysql
 # Install wordpress, wp-cli, plugins and themes using composer.json
 # from the config repo loaded above
 
-#RUN cd /docker/www/bwb && hhvm /docker/www/composer.phar install
+# to edit the installed packages fork the config repo, change the 
+# composer.json file and rewrite this file to link to your fork.
+# there will be a simple web installer later.
+
+RUN cd /docker/www/bwb && hhvm /docker/composer/composer.phar install
+
 
 
 ########################################################################
 #
-# Restart hhvmd with newest source if it is running
-# (it shouldnt, it wont hurt to make sure.
+# Restart hhvmd with newest source
+# (it shouldnt be running, restarting it wont hurt, just to make sure.
 
 RUN hhvmd restart
 
