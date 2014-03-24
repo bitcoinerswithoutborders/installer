@@ -185,7 +185,7 @@ RUN /docker/config/createusers.sh bwb-mariadb
 # composer.json file and rewrite this file to link to your fork.
 # there will be a simple web installer later.
 
-RUN cd /docker/www/bwb && hhvm /docker/composer/composer.phar install
+#RUN cd /docker/www/bwb && hhvm /docker/composer/composer.phar install
 
 
 
@@ -194,8 +194,18 @@ RUN cd /docker/www/bwb && hhvm /docker/composer/composer.phar install
 # Restart hhvmd with newest source
 # (it shouldnt be running, restarting it wont hurt, just to make sure.
 
+# Create hhvm log folder
+RUN mkdir /docker/log
+
+# restart hhvmd
 RUN hhvmd restart
 
+########################################################################
+#
+# Install and Setup ssh
+RUN yum install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo 'root:screencast' | chpasswd
 
 # open bash here and leave it open?
 # enable the ports of the docker instance to be routed through
