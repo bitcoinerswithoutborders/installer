@@ -24,7 +24,7 @@
 #BWWWWWWWWWB  BWWWWB   BWWWWWWWWWWWB#
 #BWWWWWWWWWB  BWWWWB   BWWWWWWWWWWWB#
 #BWWWWWWWWWB  BWWWWB   BWWWWWWWWWWWB#   Not in use yet. very crude.
-#      KEEP CALM - BITCOIN ON      #
+#      KEEP CALM - BITCOIN ON       #
 
 
 
@@ -41,7 +41,11 @@
 # docker build .
 #
 # the installer will then download the git repo with the config files
-# to the vm, install mariadb(mysql), hhvm, git and wget
+# to the vm, install mariadb(mysql), hhvm, git and wget.
+# all of this files will be loaded into the /docker directory.
+#
+# to customize any settings just edit the scripts below,
+# work on a web based config creator will start soon.
 
 
 
@@ -153,17 +157,24 @@ RUN ln -s /docker/composer/composer.phar /bin/composer
 # Add needed user for hhvm, mysql (later postfix, fpdf etc?)
 # Passwordgen needs to be done, names need to be randomized.
 
-RUN useradd bwb-hhvm
-RUN useradd bwb-mysql
 
+# create all needed users
+RUN /docker/config/createusers.sh bwb-hhvm
+RUN /docker/config/createusers.sh bwb-mariadb
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # MISSING HERE:
-# USER PASSWD, MYSQL SETUP, ROOT RENAME, SSH PUB/PRIV KEY SETUP, ETC
 
-# starting with user password generation
-RUN echo `makepasswd -m 42`
+# MYSQL SETUP:
+#   create database,
+#   user permissions for mariadb user added above
 
+# SSH:
+#   PUB/PRIV KEY SETUP, Disallow root access,
+
+# EMAIL SERVER SETUP
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 ########################################################################
 #
@@ -185,3 +196,8 @@ RUN cd /docker/www/bwb && hhvm /docker/composer/composer.phar install
 
 RUN hhvmd restart
 
+
+# open bash here and leave it open?
+# enable the ports of the docker instance to be routed through
+# the parent machine and accessible from a browser locally.
+# leave all outwards routing to the parent os.
